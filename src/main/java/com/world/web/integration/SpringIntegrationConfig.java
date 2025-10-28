@@ -15,26 +15,26 @@ import org.springframework.messaging.support.MessageBuilder;
 
 import java.time.Instant;
 
-@Configuration
+//@Configuration
 public class SpringIntegrationConfig {
 
 
-    @Bean
+    //@Bean
     public MessageChannel errorChannel() {
        return new DirectChannel();
     }
 
-    @Bean
+    //@Bean
     public MessageChannel inputChannel() {
         return new DirectChannel();
     }
 
-    @Bean
+    //@Bean
     public MessageChannel outputChannel() {
         return new DirectChannel();
     }
 
-    @Bean
+    //@Bean
     public MessageChannel greeting() {
         return new DirectChannel();
     }
@@ -68,7 +68,7 @@ public class SpringIntegrationConfig {
             return MessageBuilder.withPayload(text()).build();
         }
     }
-    @Bean
+    //@Bean
     public IntegrationFlow inboundFlow() {
        return IntegrationFlow
                .fromSupplier(this::getText, pollerSpec -> pollerSpec.poller(pm->pm.fixedDelay(1000)))
@@ -76,34 +76,34 @@ public class SpringIntegrationConfig {
                .transform((GenericTransformer<String, String>) String::toUpperCase)
                .handle((GenericHandler<String>) (payload,headers) -> {
                   System.out.println("input adapter data :: "+payload);
-                  return payload;
+                  return MessageBuilder.withPayload(payload).copyHeaders(headers).build();
                })
                .channel(inputChannel())
                .get();
     }
 
-    @Bean
+   // @Bean
     public IntegrationFlow inputFlow() {
         return IntegrationFlow.from(inputChannel())
                 .handle((GenericHandler<String>) (payload, headers) -> {
                     System.out.println("input channel data :: "+payload);
-                    return payload;
+                    return MessageBuilder.withPayload(payload).copyHeaders(headers).build();
                 })
                 .channel(outputChannel())
                 .get();
     }
 
-    @Bean
+    //@Bean
     public IntegrationFlow outputFlow() {
         return IntegrationFlow.from(outputChannel())
                 .handle((GenericHandler<String>) (payload, headers) -> {
                     System.out.println("output channel data :: "+payload.toLowerCase());
-                    return payload;
+                    return MessageBuilder.withPayload(payload).copyHeaders(headers).build();
                 })
                 .get();
     }
 
-    @Bean
+    //@Bean
     public IntegrationFlow errorFlow() {
         return IntegrationFlow.from(errorChannel())
                 .handle((GenericHandler<Object>) (payload, headers) -> {

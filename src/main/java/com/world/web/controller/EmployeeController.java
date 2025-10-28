@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/integration/v1")
 public class EmployeeController {
+
     @Autowired
     private EmployeeGateway employeeGateway;
+
 
     /*Examples of Spring Integration Service Activator Components */
     /**

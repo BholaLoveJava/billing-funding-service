@@ -15,5 +15,5 @@ public interface LibraryManagementRepository extends JpaRepository<LibraryBookEn
      * @return String author name
      */
     @Query(value = "SELECT * from findLibraryBookById(:bookId)", nativeQuery = true)
-    public String getAuthorNameByBookId(String bookId);
+    String getAuthorNameByBookId(String bookId);
 }

@@ -9,9 +9,8 @@ import java.util.Map;
 
 public interface LibraryManagementService {
 
-    public LibraryBookResponse saveBookData(LibraryBookRequest libraryBookRequest);
-    public List<LibraryBookResponse> fetchAllBookData();
-    public Map<String,Object> fetchAllBooksUsingPagination(Pageable pageable);
-
-    public String getAuthorNameByBookId(String bookId);
+    LibraryBookResponse saveBookData(LibraryBookRequest libraryBookRequest);
+    List<LibraryBookResponse> fetchAllBookData();
+    Map<String,Object> fetchAllBooksUsingPagination(Pageable pageable);
+    String getAuthorNameByBookId(String bookId);
 }

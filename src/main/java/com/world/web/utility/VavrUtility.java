@@ -23,8 +23,9 @@ public class VavrUtility {
         Try.run(() -> VavrUtility.badComputationMethod(50, 10))
                 .onSuccess(response -> {
                     logger.info("Method execution completed Successfully");
-                }).onFailure(throwable -> {
-           logger.error("Exception message :: {}", throwable.getMessage());
+                })
+                .onFailure(throwable -> {
+                  logger.error("Exception message :: {}", throwable.getMessage());
         });
     }
 

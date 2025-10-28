@@ -1,0 +1,6 @@
+Hi, Mr Bhola
+How are you?
+Welcome to Concentrix, Mr Bhola
+Bhola will start working with HealthCare Project for USA Client
+Bhola need access for Github Repos, Jenkins, Jira, SonarQube, Veracode, Twistlock
+Bhola has been assigned one Jira Ticket HW-212345
